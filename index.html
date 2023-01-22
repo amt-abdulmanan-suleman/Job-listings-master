@@ -10,11 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&display=swap" rel="stylesheet">
   <title>Frontend Mentor | Job Listings</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-
-  </style>
 </head>
 <body>
   <header class="header"></header>
@@ -28,47 +23,61 @@
       <button class="search-btn" type="button">clear</button>
     </div>
     <section class="job-listings">
-      <div class="job_item"></div>
+      <div class="job__item">
+        <div class="job__item__left">
+          <img src="./images/photosnap.svg" alt="logo">
+          <div class="job__item__info">
+            <div class="info__top">
+              <h6>Photosnap</h6>
+              <span class="info__top-tag">New!</span>
+              <span class="info__top-tag">featured</span>
+            </div>
+            <h5>Senior Frontend Developer</h5>
+            <div class="info-bottom">
+              <p>1d ago</p>
+              <p>Full Time</p>
+              <p>USA only</p>
+            </div>
+          </div>
+        </div>
+        <div class="job__item__right">
+          <span class="job__item-tag ">Frontend</span>
+          <span class="job__item-tag">Senior</span>
+          <span class="job__item-tag">HTML</span>
+          <span class="job__item-tag">CSS</span>
+          <span class="job__item-tag">JavaScript</span>
+        </div>
+      </div>
+      <div class="job__item">
+        <div class="job__item__left">
+          <img src="./images/manage.svg" alt="logo">
+          <div class="job__item__info">
+            <div class="info__top">
+              <h6>Manage</h6>
+              <span class="info__top-tag">New!</span>
+              <span class="info__top-tag">featured</span>
+            </div>
+            <h5>Fullstack Developer</h5>
+            <div class="info-bottom">
+              <p>1d ago</p>
+              <p>Part Time</p>
+              <p>Remote</p>
+            </div>
+          </div>
+        </div>
+        <div class="job__item__right">
+          <span class="job__item-tag ">Fullstack</span>
+          <span class="job__item-tag">Midweight</span>
+          <span class="job__item-tag">Python</span>
+          <span class="job__item-tag">React</span>
+        </div>
+      </div>
     </section>
   </main>
-  <!-- Item Start -->
-  Photosnap
-  New!
-  Featured
-  Senior Frontend Developer
-  1d ago
-  Full Time
-  USA only
-  <!-- Role -->
-  Frontend
-  <!-- Level -->
-  Senior
-  <!-- Languages -->
-  HTML
-  CSS
-  JavaScript
-  <!-- Item End -->
-
-  <!-- Item Start -->
-  Manage
-  New!
-  Featured
-  Fullstack Developer
-  1d ago
-  Part Time
-  Remote
-  <!-- Role -->
-  Fullstack
-  <!-- Level -->
-  Midweight
-  <!-- Languages -->
-  Python
-  <!-- Tools -->
-  React
-  <!-- Item End -->  
-  <div class="attribution">
+    
+  <footer class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
-  </div>
+  </footer>
 </body>
 </html>
