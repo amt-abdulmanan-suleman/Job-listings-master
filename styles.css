@@ -29,8 +29,6 @@ body{
     padding: 20px 40px;  
 }
 .tag,.job__item-tag{
-    width: 81px;
-    height: 32px;
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -44,6 +42,7 @@ body{
     margin-right: 16px;
     cursor: pointer;
 }
+
 .tag{
     padding-right: 45px;
 }
@@ -128,6 +127,9 @@ body{
     align-items: center;
     margin-top: 7px;
 }
+hr{
+    display: none;
+}
 .info__top-tag{
     padding: 5px;
     background: #5CA5A5;
@@ -195,6 +197,8 @@ body{
         height: 100%;
         flex-direction: column;
         row-gap: 15px;
+        align-items: flex-start;
+        padding:0 24px 24px 24px ;
     }
     .search{
         width: 327px;
@@ -209,7 +213,7 @@ body{
         width: 48px;
         height: 48px;
         margin-bottom: 18px;
-        margin-top: -23%;
+        margin-top: -24px;
     }
     .job__item__info h5{
         font-size: 15px;
@@ -226,6 +230,29 @@ body{
     }
     .job__item::after{
         top: 0;
+    }
+    hr{
+        display: block;
+        width: 279px;
+        background-color: #B7C4C4;
+        height: 1px;
+    }
+    .job__item__right{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        row-gap: 16px;
+    }
+    
+    .job-listings{
+        row-gap: 40px;
+    }
+    .search-tags{
+        display: grid;
+        grid-template-columns: auto auto;
+        row-gap: 16px;
+    }
+    .search{
+        padding: 20px;
     }
 }
 
