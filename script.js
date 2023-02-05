@@ -159,12 +159,12 @@ search.style.opacity = 0
 let jobListingsSection = document.createElement('section')
 jobListingsSection.className = 'job-listings';
 
-let jobListingsFilter = document.createElement('section')
-jobListingsFilter.className = 'job-listings';
+// let jobListingsFilter = document.createElement('section')
+// jobListingsFilter.className = 'job-listings';
 
 let main = document.getElementById('main');
 main.appendChild(jobListingsSection)
-main.appendChild(jobListingsFilter)
+
     
 
 function showJobItem(logo,company,featured,newy,position,postedAt,contract,location,role,level,languages,tools){
@@ -230,32 +230,33 @@ function showJobItem(logo,company,featured,newy,position,postedAt,contract,locat
     let roleSpan = document.createElement('span');
     roleSpan.className = 'job__item-tag';
     roleSpan.innerHTML = role;
-    roleSpan.addEventListener('click',filter)
+    roleSpan.addEventListener('click',filtering)
+    
     jobItemRight.appendChild(roleSpan)
 
     let levelSpan = document.createElement('span');
     levelSpan.className = 'job__item-tag';
     levelSpan.innerHTML = level;
-    levelSpan.addEventListener('click',filter)
+    levelSpan.addEventListener('click',filtering)
+
     jobItemRight.appendChild(levelSpan)
     
     languages.forEach(language=>{
       let languageSpan = document.createElement('span')
       languageSpan.className = 'job__item-tag'
       languageSpan.innerHTML=language;
-      languageSpan.addEventListener('click',filter)
+      languageSpan.addEventListener('click',filtering)
       jobItemRight.appendChild(languageSpan)
     })
     tools.forEach(tool=>{
       let toolSpan = document.createElement('span')
       toolSpan.className = 'job__item-tag'
-      toolSpan.innerHTML = tool
-      toolSpan.addEventListener('click',filter)
+      toolSpan.innerHTML = tool;
       jobItemRight.appendChild(toolSpan)
     })
     
     
-    
+   
 
     // parent node for both infoTop
     jobItemInfo.appendChild(infoTop)
@@ -270,27 +271,7 @@ function showJobItem(logo,company,featured,newy,position,postedAt,contract,locat
     jobItem.appendChild(jobItemLeft)
     jobItem.appendChild(horizontal)
     jobItem.appendChild(jobItemRight);
-    // return `<div class="job__item">
-    // <div class="job__item__left">
-    //   <img src=${logo} alt="logo">
-    //   <div class="job__item__info">
-    //     <div class="info__top" id='info__top'>
-    //       <h6>${company}</h6>
-    //     </div>
-    //     <h5>${position}</h5>
-    //     <div class="info-bottom">
-    //       <p>${postedAt}</p>
-    //       <p>${contract}</p>
-    //       <p>${location}</p>
-    //     </div>
-    //   </div>
-    // </div>
-    // <hr/>
-    // <div class="job__item__right" id='job__item__right'>
-    //   <span class="job__item-tag ">${role}</span>
-    //   <span class="job__item-tag">${level}</span>
-    // </div>
-    // </div>`
+    
     tagsNew(newy,infoTop)
     tagsFeatured(featured,infoTop)
     return jobItem;
@@ -306,6 +287,7 @@ function tagsNew(variable,top){
         top.appendChild(tagsy)
     }
 }
+
 function tagsFeatured(variable,top){
   let tagsy = document.createElement('span');
   tagsy.className = 'info__top-tag'
@@ -332,40 +314,104 @@ function languagesAndToolsTag(arr1,arr2){
     })
 }
 
-jobListings.forEach(jobListing => {
-  jobListingsSection.appendChild(showJobItem(jobListing.logo,jobListing.company,jobListing.featured,jobListing.new,jobListing.position,jobListing.postedAt,jobListing.contract,jobListing.location,jobListing.role,jobListing.level,jobListing.languages,jobListing.tools))
-});
+
 
 let arr = []
 let itemTags = document.getElementsByClassName('job__item-tag');
 
-function filter(){
-  let searchTags = document.createElement('div');
-  searchTags.className = 'search-tags';
-  search.appendChild(searchTags)
-  search.style.opacity = 1;
-  jobListingsSection.style.display = 'none'
-  if(arr.indexOf(event.target.innerHTML)=== -1){
-    arr.push(event.target.innerHTML);
-    let searchSpan = document.createElement('span')
-    searchSpan.className = 'tag';
-    searchSpan.innerHTML = event.target.innerHTML;
-    searchTags.appendChild(searchSpan)
+
+let searchTags = document.createElement('div');
+searchTags.className = 'search-tags';
+search.appendChild(searchTags)
+
+function searchArr(event,arr){
+  let searchSpan = document.createElement('span')
+  searchSpan.className = 'tag';
+  if(arr.indexOf(event) === -1){
+    arr.push(event);
+    
+  }else{
+    let index = arr.indexOf(event)
+    let x = arr.splice(index,1);
   }
-  jobListings = jobListings.filter(jobListing => event.target.innerHTML===jobListing.role );
-  
+  console.log(arr)
+  return arr
+}
+
+let btn = document.getElementById('search-btn')
+btn.onclick = function(){
+  searchTags.style.display = 'none'
+  console.log(btn)
+}
+
+function showSearchTags(array1){
+  let searchSpan = document.createElement('span')
+  searchSpan.className = 'tag';
+  searchTags.style.display = 'grid'
+  array1.forEach(arr1 => {
+    searchSpan.innerHTML = arr1;
+    searchSpan.onclick = function(){
+    searchSpan.style.display = 'none'
+    }
+    searchTags.appendChild(searchSpan)
+  })
+}
+
+
+function filterArr(arr){
+  if(arr.length === 0){
+    jobListings.forEach(jobListing => {
+      jobListingsSection.appendChild(showJobItem(jobListing.logo,jobListing.company,jobListing.featured,jobListing.new,jobListing.position,jobListing.postedAt,jobListing.contract,jobListing.location,jobListing.role,jobListing.level,jobListing.languages,jobListing.tools))
+  });
+  }else if(arr.length === 1){
+    jobListings = jobListings.filter(jobListing=>{
+      return arr[0] === jobListing.role || arr[0] === jobListing.level
+    })
+  }
+}
+let spanTag =  document.getElementsByClassName('tag')
+function filtering(){
+  search.style.opacity = 1;
+  const arrayt = searchArr(event.target.innerHTML,arr);
+  showSearchTags(arrayt)
+  jobListings = filter(jobListings,event.target.innerHTML)
+  jobListingsSection.style.display = 'none'
+  let jobListingsFilter = document.createElement('section')
+  jobListingsFilter.className = 'job-listings';
+  main.appendChild(jobListingsFilter)
   jobListings.forEach(jobListing => {
     jobListingsFilter.appendChild(showJobItem(jobListing.logo,jobListing.company,jobListing.featured,jobListing.new,jobListing.position,jobListing.postedAt,jobListing.contract,jobListing.location,jobListing.role,jobListing.level,jobListing.languages,jobListing.tools))
   });
-  // jobListings.filter(jobListing=>{
-  //   if(event.target.innerHTML!==jobListing.role){
-  //     // let t = Object.values(jobListingsSection.children)
-  //     // console.log(t)
-  //     let y = event.target.parentNode.parentNode;
-  //     y.style.display = 'none'
-      
-  //   }
-  // })
 }
+
+let jobsy = jobListings.map(jobListing=>{
+  return [jobListing.role,jobListing.position,jobListing.level,...jobListing.tools,...jobListing.languages].join(' ')
+})
+
+console.log(jobsy)
+
+function filter(arr,event){
+  let jobs = arr.filter(jobListing=>{
+    let jobsy = [jobListing.role,jobListing.position,jobListing.level,...jobListing.tools,...jobListing.languages].join(' ')
+    if(jobsy.includes(event)){
+      return jobListing
+    }
+  })
+
+  if(jobs.length > 0){
+    return jobs
+  }else{
+    return arr
+  }
+  
+}
+
+window.addEventListener('load',function(){
+  jobListings.forEach(jobListing => {
+    jobListingsSection.appendChild(showJobItem(jobListing.logo,jobListing.company,jobListing.featured,jobListing.new,jobListing.position,jobListing.postedAt,jobListing.contract,jobListing.location,jobListing.role,jobListing.level,jobListing.languages,jobListing.tools))
+  });
+})
+
+
 
 
