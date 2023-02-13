@@ -3,6 +3,9 @@
     margin: 0;
     box-sizing: border-box;
 }
+html{
+    scroll-behavior: smooth;
+}
 body{
     background-color: #EFFAFA;
     font-family: 'League Spartan', sans-serif;
@@ -265,6 +268,7 @@ hr{
     }
     .search{
         padding: 20px;
+        height: 120px;
     }
     .job__item-tag{
         padding: 7px;
