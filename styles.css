@@ -217,7 +217,6 @@ hr{
     }
     .search{
         width: 327px;
-        height: 120px;
         margin-bottom: 32px;
     }
     .job__item__left{
@@ -268,10 +267,20 @@ hr{
     }
     .search{
         padding: 20px;
-        height: 120px;
+        height: 150px;
     }
     .job__item-tag{
         padding: 7px;
+    }
+    .tag{
+        padding: 7px 30px 7px 7px;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 20px;
+        letter-spacing: -0.123077px;
+    }
+    .tag::after{
+        width: 25px;
     }
 }
 
