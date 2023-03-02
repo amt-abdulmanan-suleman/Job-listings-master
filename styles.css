@@ -262,12 +262,12 @@ hr{
     }
     .search-tags{
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns:auto auto;
         row-gap: 16px;
     }
     .search{
         padding: 20px;
-        height: 150px;
+        height: auto;
     }
     .job__item-tag{
         padding: 7px;
